@@ -123,3 +123,8 @@ AND "quantity" < 1000;
 SELECT *
 FROM "phones"
 WHERE "price" > 28000;
+
+
+SELECT *
+FROM "phones" p
+WHERE p."id"=1;
