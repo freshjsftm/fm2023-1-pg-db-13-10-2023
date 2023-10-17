@@ -48,7 +48,7 @@ GROUP BY "lastName";
 -- кількість користувачів, які народилися у липні (7)
 SELECT count("id"), extract('months' from "birthday") AS "months"
 FROM "users"
-WHERE  extract('months' from "birthday")=7
+-- WHERE  extract('months' from "birthday")=7
 GROUP BY "months";
 -- загальна вага жінок з іменем Anna
 SELECT sum("weight"), "firstName", count(*), "isMale"
@@ -65,3 +65,37 @@ SELECT count(*), "isMale"
 FROM "users"
 WHERE  extract('years' from age("birthday")) < 30
 GROUP BY "isMale";
+
+
+
+--підрахувати кількість проданих телефонів
+SELECT sum("quantity")
+FROM "phones_to_orders";
+
+--підрахувати кількість телефонів на складі
+SELECT sum("quantity")
+FROM "phones";
+
+
+--визначити середню ціну усіх телефонів 
+--по кожному з брендів
+SELECT avg("price"), "brand"
+FROM "phones"
+GROUP BY "brand";
+
+
+--порахувати кількість моделей по кожному бренду
+SELECT count(*), "brand"
+FROM "phones"
+GROUP BY "brand";
+
+
+-- порахувати загальну вартість телефонів бренду Sony на складі
+SELECT sum("quantity"*"price")
+FROM "phones"
+WHERE "brand"='Sony';
+
+SELECT sum("quantity"*"price"), "brand"
+FROM "phones"
+WHERE "brand"='Sony'
+GROUP BY "brand";
